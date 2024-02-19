@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
+    <title>Weather App</title>
+  </head>
+
+  <body>
+    <div class="search">
+      <form>
+        <input type="text" placeholder="search city" />
+      </form>
+    </div>
+
+    <div class="container">
+      <div class="upper-data">
+        <img src="./assets/hot.jpg" alt="hot" />
+        <img src="./assets/cold.png" alt="cold" />
+
+        <div class="wether-data">
+          <div class="location">Tbilisi</div>
+          <div class="temperature">13&#176;C</div>
+        </div>
+      </div>
+      <div class="lower-data">
+        <div class="more-info">More information</div>
+        <div class="more-info-container">
+          <div class="info-block">
+            <div class="info-block-label">
+              <img src="./assets/min.png" alt="" />
+              <span>min</span>
+            </div>
+
+            <div class="info-block-value">10&#176;C</div>
+          </div>
+
+          <div class="info-block">
+            <div class="info-block-label">
+              <img src="./assets/max.png" alt="" />
+              <span>max</span>
+            </div>
+
+            <div class="info-block-value">20&#176;C</div>
+          </div>
+
+          <div class="info-block">
+            <div class="info-block-label">
+              <img src="./assets/water.png" alt="" />
+              <span>humidity</span>
+            </div>
+
+            <div class="info-block-value">77%</div>
+          </div>
+
+          <div class="info-block">
+            <div class="info-block-label">
+              <img src="./assets/wind.png" alt="" />
+              <span>wind</span>
+            </div>
+
+            <div class="info-block-value">11 km/h</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script src="./script.js"></script>
+  </body>
+</html>
