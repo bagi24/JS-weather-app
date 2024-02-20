@@ -58,7 +58,24 @@ body {
   padding: 1em;
   display: flex;
   flex-direction: column;
-  visibility: hidden;
+  display: none;
+}
+
+.weather-title {
+  position: relative;
+  border: none;
+  overflow: hidden;
+  width: 100%;
+  height: 50%;
+  border-bottom-left-radius: 20px;
+  border-bottom-right-radius: 20px;
+  padding: 1em;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fac742;
+  font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+  font-size: 30px;
 }
 
 .upper-data img {
@@ -107,12 +124,15 @@ body {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
+  height: 80%;
 }
 
 .info-block {
   width: 50%;
   display: flex;
   flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
 }
 
 .info-block-label {
@@ -158,9 +178,13 @@ body {
 }
 
 .error {
-  font-size: 2.5rem;
+  font-size: 0.8rem;
   font-weight: bold;
   color: red;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 5px;
 }
 
 .humidityContainer {

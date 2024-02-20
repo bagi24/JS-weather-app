@@ -36,14 +36,9 @@ async function getWeatherData(city) {
   return await response.json();
 }
 
-function displayWeather(data) {}
-
 function displayError(message) {
-  const errorDisplay = document.createElement("p");
+  const errorDisplay = document.querySelector(".error");
   errorDisplay.textContent = message;
-  errorDisplay.classList.add("error");
-
-  weatherForm.appendChild(errorDisplay);
 }
 
 function displayWeatherInfo(data) {
@@ -60,9 +55,11 @@ function displayWeatherInfo(data) {
   } = data;
 
   console.log(name);
+  const weatherTitle = document.querySelector(".weather-title");
+  weatherTitle.style.display = "none";
 
   const lowerData = document.querySelector(".lower-data");
-  lowerData.style.visibility = "visible";
+  lowerData.style.display = "block";
 
   const humidityContainer = document.querySelector(".humidityContainer");
   const windContainer = document.querySelector(".windContainer");
@@ -94,6 +91,7 @@ function displayWeatherInfo(data) {
   weatherState.setAttribute("src", icon);
 
   const wetherInfo = document.querySelector(".wether-info");
+  wetherInfo.style.color = "yellow";
 
   wetherInfo.textContent = `${text}`;
 }
