@@ -3,67 +3,35 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="style.css" />
     <title>Weather App</title>
+    <link rel="stylesheet" href="style.css" />
   </head>
-
   <body>
-    <form class="search">
-      <input type="text" placeholder="search city" />
-      <button type="submit">search</button>
-      <p class="error"></p>
-    </form>
-
-    <div class="container">
-      <div class="upper-data">
-        <img class="icon" src="./assets/amindi-1.jpg" alt="hot" />
-        <!-- <img src="./assets/cold.png" alt="cold" /> -->
-
-        <div class="wether-data">
-          <div class="location"></div>
-          <div class="temperature"></div>
+    <div class="weather-app">
+      <!-- Header Section -->
+      <header class="weather-header">
+        <h1>Weather App</h1>
+        <div class="search-bar">
+          <input type="text" id="city-input" placeholder="Enter city name" />
+          <button id="search-button">Search</button>
         </div>
-      </div>
-      <div class="lower-data">
-        <div class="more-info">More information</div>
-        <div class="more-info-container">
-          <div class="info-block">
-            <div class="info-block-label">
-              <img class="weather-state" src="" alt="" />
+      </header>
+
+      <!-- Main Content -->
+      <main class="weather-content">
+        <!-- Current Weather -->
+        <section class="current-weather">
+          <h2 class="city-name"></h2>
+          <div class="weather-details">
+            <div class="temp">°C</div>
+            <div class="description"></div>
+            <div class="icon">
+              <img src="" alt="Weather Icon" id="weather-icon" />
             </div>
           </div>
-
-          <div class="info-block">
-            <div class="info-block-label">
-              <h4 class="wether-info"></h4>
-            </div>
-          </div>
-
-          <div class="info-block">
-            <div class="info-block-label humidityContainer">
-              <img src="./assets/water.png" alt="" />
-              <span>humidity</span>
-            </div>
-
-            <div class="info-block-value humidity"></div>
-          </div>
-
-          <div class="info-block windContainer">
-            <div class="info-block-label">
-              <img src="./assets/wind.png" alt="" />
-              <span>wind</span>
-            </div>
-
-            <div class="info-block-value wind"></div>
-          </div>
-        </div>
-      </div>
-
-      <div class="weather-title">
-        <h1>WEATHER APP</h1>
-      </div>
+        </section>
+      </main>
     </div>
-
-    <script src="./script.js"></script>
+    <script src="script.js"></script>
   </body>
 </html>

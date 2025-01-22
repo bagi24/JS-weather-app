@@ -1,97 +1,53 @@
-const weatherForm = document.querySelector(".search");
-const cityInput = document.querySelector("input");
-const container = document.querySelector(".container");
+const getElement = selector => document.querySelector(selector);
 
-const api = "987baa4af16e48b38d9175305241902 ";
+const APIKey = '1344a75e45dc4dc0b52212250252101';
 
-weatherForm?.addEventListener("submit", async (event) => {
-  event.preventDefault();
+const cityInputValue = getElement('#city-input');
 
-  const city = cityInput.value;
+const searchButton = getElement('#search-button');
+const cityName = getElement('.city-name');
+const tempCity = getElement('.temp');
+const weatherDesc = getElement('.description');
+const weatherIcon = getElement('#weather-icon');
 
-  if (city) {
-    try {
-      const weatherData = await getWeatherData(city);
-      displayWeatherInfo(weatherData);
-      cityInput.value = "";
-    } catch (error) {
-      console.error(error);
-      displayError(error);
+const fetchWeatherData = async city => {
+  try {
+    const response =
+      await fetch(`http://api.weatherapi.com/v1/current.json?key=${APIKey}&q=${city}&aqi=no
+`);
+    const data = await response.json();
+    createDisplayData(data);
+    console.log(data);
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`);
     }
-  } else {
-    displayError("please enter a city");
+  } catch (error) {
+    console.error('Error fetching weather data:', error);
+    return;
   }
+};
+
+//display
+const createDisplayData = data => {
+  const { location, current } = data;
+  cityName.textContent = location.name;
+  tempCity.textContent = `${current.temp_c}°C`;
+  weatherDesc.textContent = current.condition.text;
+  weatherIcon.src = `https:${current.condition.icon}`;
+  date.textContent = new Date().toLocaleDateString();
+};
+
+searchButton.addEventListener('click', () => {
+  const city = cityInputValue.value;
+
+  if (!city) {
+    alert('Please enter a city name');
+    return;
+  }
+  cityInputValue.value = '';
+
+  fetchWeatherData(city);
 });
 
-async function getWeatherData(city) {
-  const apiUrl = `https://api.weatherapi.com/v1/current.json?key=987baa4af16e48b38d9175305241902 &q=${city}&aqi=no`;
-
-  const response = await fetch(apiUrl);
-  console.log(response);
-
-  if (!response.ok) {
-    throw new Error("Could not fetch weather data");
-  }
-
-  return await response.json();
-}
-
-function displayError(message) {
-  const errorDisplay = document.querySelector(".error");
-  errorDisplay.textContent = message;
-}
-
-function displayWeatherInfo(data) {
-  console.log(data);
-
-  const {
-    location: { country, name, lat, lon, localtime },
-    current: {
-      condition: { code, icon, text },
-      temp_c,
-      wind_kph,
-      humidity,
-    },
-  } = data;
-
-  console.log(name);
-  const weatherTitle = document.querySelector(".weather-title");
-  weatherTitle.style.display = "none";
-
-  const lowerData = document.querySelector(".lower-data");
-  lowerData.style.display = "block";
-
-  const humidityContainer = document.querySelector(".humidityContainer");
-  const windContainer = document.querySelector(".windContainer");
-
-  humidityContainer.style.visibility = "visible";
-  windContainer.style.visibility = "visible";
-
-  const cityName = document.querySelector(".location");
-  cityName.textContent = `${name}`;
-  const temperature = document.querySelector(".temperature");
-  if (temperature) {
-    temperature.textContent = `${temp_c}°C`;
-  } else {
-    console.error("Temperature element not found");
-  }
-
-  const humidityState = document.querySelector(".humidity");
-
-  if (humidityState) {
-    humidityState.textContent = `${humidity}%`;
-  }
-
-  const windState = document.querySelector(".wind");
-  if (windState) {
-    windState.textContent = `${wind_kph}km/h`;
-  }
-
-  const weatherState = document.querySelector(".weather-state");
-  weatherState.setAttribute("src", icon);
-
-  const wetherInfo = document.querySelector(".wether-info");
-  wetherInfo.style.color = "yellow";
-
-  wetherInfo.textContent = `${text}`;
-}
+fetchWeatherData('Tbilisi');
+createDisplayData();
